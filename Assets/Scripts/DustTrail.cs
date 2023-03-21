@@ -5,11 +5,11 @@ using UnityEngine;
 public class DustTrail : MonoBehaviour
 {
   [SerializeField] ParticleSystem dustTrail;
-
+  bool trailOn = true;
 
   private void OnCollisionEnter2D(Collision2D other)
   {
-    if (other.gameObject.tag == "Ground")
+    if (other.gameObject.tag == "Ground" && trailOn)
     {
       dustTrail.Play();
     }
@@ -18,8 +18,11 @@ public class DustTrail : MonoBehaviour
 
   private void OnCollisionExit2D(Collision2D other)
   {
-
     dustTrail.Stop();
   }
 
+  public void DisableTrail()
+  {
+    trailOn = false;
+  }
 }
